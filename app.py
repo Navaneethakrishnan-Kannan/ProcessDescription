@@ -25,7 +25,7 @@ if uploaded_file and api_key:
             img = images[0] # Analyze the first page
             
             # 2. Setup Gemini
-            model = genai.GenerativeModel('gemini-1.5-pro')
+            model = genai.GenerativeModel(model_name='models/gemini-1.5-pro')
             prompt = "Identify all major equipment tags and write a sequential process description for this P&ID."
             
             # 3. Get Response
