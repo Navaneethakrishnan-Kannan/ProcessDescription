@@ -25,8 +25,14 @@ if uploaded_file and api_key:
             img = images[0] # Analyze the first page
             
             # 2. Setup Gemini
-            model = genai.GenerativeModel(model_name='models/gemini-1.5-pro')
-            prompt = "Identify all major equipment tags and write a sequential process description for this P&ID."
+            #model = genai.GenerativeModel(model_name='models/gemini-1.5-pro')
+            model = genai.GenerativeModel('gemini-2.0-flash')
+            prompt = """
+            ACT AS: Senior Process Engineer.
+            INPUT: P&ID Diagram (PDF converted to Image).
+            TASK: Generate a high-fidelity Process Functional Description.
+            REQUIREMENTS: Identify all instrument tags (PT, FT, LT), equipment IDs, and safety interlocks.
+            """
             
             # 3. Get Response
             response = model.generate_content([prompt, img])
